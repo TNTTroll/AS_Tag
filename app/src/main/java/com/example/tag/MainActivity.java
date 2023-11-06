@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int imageHeight = picture.getHeight();
         int imageWidth = picture.getWidth();
 
-        int need = Math.min(imageWidth, imageHeight) / 2;
-        Bitmap usePicture = Bitmap.createBitmap(picture, imageWidth / 2 - need, imageHeight / 2 - need, imageWidth / 2 + need, imageHeight / 2 + need);
+        int need = Math.min(imageWidth, imageHeight) / 2 - 1;
+        Bitmap usePicture = Bitmap.createBitmap(picture, imageWidth / 2 - need, imageHeight / 2 - need, need * 2, need * 2);
         need *= 2;
 
         image.setParam(-1, new BitmapDrawable(getResources(), usePicture), -1);
@@ -186,11 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Mover btn = cl.findViewWithTag("btn_" + index);
 
-                Bitmap crop;
-                if (size % 2 == 0)
-                    crop = Bitmap.createBitmap(usePicture, j*(need / size), i*(need / size), need / size, need / size);
-                else
-                    crop = Bitmap.createBitmap(usePicture, j*(need / size)+1, i*(need / size)+1, need / size, need / size);
+                Bitmap crop = Bitmap.createBitmap(usePicture, j*(need / size), i*(need / size), need / size, need / size);
 
                 btn.setPos(index);
 
